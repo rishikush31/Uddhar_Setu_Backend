@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const server = express();
-
+const userRouter = require('./routes/user')
 
 //db connection
 main().catch(err => console.log(err));
@@ -38,6 +38,7 @@ server.use(cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({extended:true}));
 server.get('/', (req, res) => { res.send("okay") });
+server.use('/user',userRouter.router)
 
 server.listen(process.env.PORT||3000, () => {
   console.log('server started');
