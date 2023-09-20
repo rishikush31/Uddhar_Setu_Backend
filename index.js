@@ -5,7 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const server = express();
 const userRouter = require('./routes/user')
-
+const agencyRouter = require('./routes/agency')
+const alertRouter=require("./routes/alert")
 //db connection
 main().catch(err => console.log(err));
 
@@ -14,31 +15,13 @@ async function main() {
   console.log('database connected')
 }
 
-//bodyParser
-// const auth = (req,res,next)=>{
-
-//   try{
-//     const token = req.get('Authorization').split('Bearer ')[1];
-//     console.log(token);
-//     var decoded = jwt.verify(token,publicKey);
-//     if(decoded.email){
-//       next()
-//     }else{
-//       res.sendStatus(401)
-//     }
-//   }catch(err){
-//     res.sendStatus(401)
-//   }
-//   console.log(decoded)
-
-
-// };
-
 server.use(cors());
 server.use(express.json());
 server.use(bodyParser.urlencoded({extended:true}));
 server.get('/', (req, res) => { res.send("okay") });
 server.use('/user',userRouter.router)
+server.use('/agency',agencyRouter.router)
+server.use('/alert',alertRouter.router)
 
 server.listen(process.env.PORT||3000, () => {
   console.log('server started');
