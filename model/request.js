@@ -1,26 +1,35 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const requestSchema = new mongoose.Schema({
+const requestSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
 
-  title: { type: String, required: true },
+    description: { type: String },
 
-  description: { type: String },
+    agency: { type: mongoose.Schema.Types.ObjectId, ref: "Agency" },
 
-  agency: { type: mongoose.Schema.Types.ObjectId, ref: 'Agency' },
-
-  status: { type: String, enum: ['pending', 'fullfilled'], default: 'pending' },
-
-  resources: [
-    {
-      type: { type: String },
-      count: { type: Number },
+    status: {
+      type: String,
+      enum: ["pending", "fullfilled"],
+      default: "pending",
     },
-  ],
 
-  relatedAlert: { type: mongoose.Schema.Types.ObjectId, ref: 'Alert'},
+    resources: [
+      {
+        type: { type: String },
+        count: { type: Number },
+      },
+    ],
 
-}, { timestamps: true });
+    relatedAlert: { type: mongoose.Schema.Types.ObjectId, ref: "Alert" },
 
-const Request = mongoose.model('Request', requestSchema);
+    relatedResponses: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Response" },
+    ],
+  },
+  { timestamps: true }
+);
+
+const Request = mongoose.model("Request", requestSchema);
 
 module.exports = Request;
