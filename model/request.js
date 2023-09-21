@@ -10,6 +10,13 @@ const requestSchema = new mongoose.Schema({
 
   status: { type: String, enum: ['pending', 'fullfilled'], default: 'pending' },
 
+  resources: [
+    {
+      type: { type: String },
+      count: { type: Number },
+    },
+  ],
+
   relatedAlert: { type: mongoose.Schema.Types.ObjectId, ref: 'Alert'},
 
 }, { timestamps: true });

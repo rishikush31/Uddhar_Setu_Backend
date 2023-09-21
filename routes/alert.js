@@ -5,6 +5,10 @@ const router = express.Router();
 
 router
   .get("/", alertController.getAllAlerts)
-  .post("/", auth, alertController.createAlert);
+  .get("/:id",alertController.getAlertbyId)
+  .get("/nearby", alertController.nearbyAlerts)
+  .post("/", auth, alertController.createAlert)
+  .patch("/:id",auth,alertController.updateAlert)
+  .delete("/:id",auth,alertController.deleteAlert);
 
 exports.router = router;
