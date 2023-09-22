@@ -17,6 +17,14 @@ const alertSchema = new mongoose.Schema({
     type: String, enum: ['completed','ongoing'], required: true ,default: 'ongoing'
   },
 
+  chatbox:[{
+    user:{ type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    chat:[{
+      message:{type:String},
+      time:{type:Date},
+    }],
+  }],
+
   relatedRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Request'}],  
 
 }, { timestamps: true });
