@@ -13,14 +13,18 @@ const requestSchema = new mongoose.Schema(
       enum: ["pending", "fullfilled"],
       default: "pending",
     },
-
     resources: [
       {
         type: { type: String },
         count: { type: Number },
       },
     ],
-
+    recieverAgencies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Agency",
+      },
+    ],
     relatedAlert: { type: mongoose.Schema.Types.ObjectId, ref: "Alert" },
 
     relatedResponses: [

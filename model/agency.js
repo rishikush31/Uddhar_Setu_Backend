@@ -11,9 +11,21 @@ const agencySchema = new mongoose.Schema({
     address: { type: String },
   },
   location: {
-    type: {type: String,default: 'Point',},
-    coordinates: [Number], 
+    type: { type: String, default: "Point" },
+    coordinates: [Number],
   },
+  history: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Alert",
+    },
+  ],
+  recievedRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Request",
+    },
+  ],
   resources: [
     {
       type: { type: String },
@@ -28,7 +40,7 @@ const agencySchema = new mongoose.Schema({
   },
 });
 
-agencySchema.index({ location: '2dsphere' });
+agencySchema.index({ location: "2dsphere" });
 
 const Agency = mongoose.model("Agency", agencySchema);
 
