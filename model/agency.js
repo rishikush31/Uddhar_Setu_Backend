@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const agencySchema = new mongoose.Schema({
   name: { type: String, required: true },
   type: { type: String, required: true },
+  about: { type: String, required: true },
   contact: {
     name: { type: String },
     phone: { type: String },
