@@ -25,6 +25,8 @@ const alertSchema = new mongoose.Schema({
     }],
   }],
 
+  collaborators:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+
   relatedRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Request'}],  
 
 }, { timestamps: true });
